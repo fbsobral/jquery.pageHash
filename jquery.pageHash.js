@@ -1,6 +1,6 @@
 /*!
  * jQuery Page Hash
- * version: 1.0
+ * version: 1.1
  * Requires jQuery v1.5 or later and jQuery EventScroll
  * Copyright (c) 2015 F. Sobral
  * Examples and documentation at: http://fbsobral.github.io/jquery.pageHash/
@@ -23,10 +23,11 @@
                 callback: function(){
                     var id = that.attr('id');
                     if(history.pushState) {
-                        history.pushState(null, null, '#' + id);
+                        var new_url = window.location.protocol + "//" + window.location.host + window.location.pathname + '#' + id;
+                        window.history.pushState({ path: new_url },'', new_url);
                     }
                     else {
-                        location.hash = '#' + id;
+                        location.hash = id;
                     }
                 }
             });
